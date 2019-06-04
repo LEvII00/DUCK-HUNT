@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<style type="text/css">
+		@font-face{
+			font-family: 'font';
+			src: url('font.ttf');
+		}
+		p{
+			font-family: 'font';
+		}
+	</style>
+</head>
+<body class="bodybg" style="background-image: url(pole.png); background-size: 100%;">
+
+		<div class="duck " style=" width: 155px; height: 140px; background-image: url(duck.png); background-size: 100% 100%; position: absolute; transition: all 1s ease-in-out;"></div>
+		<div class="duck1" style=" width: 155px; height: 140px; background-image: url(duck.png); background-size: 100% 100%; position: absolute; transition: all 1s ease-in-out;"></div>
+		<div class="duck2" style=" width: 155px; height: 140px; background-image: url(duck.png); background-size: 100% 100%; position: absolute; transition: all 1s ease-in-out;"></div>
+
+	<div class="row col-12">
+		<p class="display-2 vremya text-white ml-5 col-4">5</p>
+		<div class="bg-dark row  border border-warning rounded"  style="height: 80px; width: 250px;">
+			<div class="hp border border-dark ml-3" style="background-image: url(hpduck.png); background-size: 100% 100%; height: 75px; width: 75px;"></div>
+			<div class="hp border border-dark" style="background-image: url(hpduck.png); background-size: 100% 100%; height: 75px; width: 75px;"></div>
+			<div class="hp border border-dark" style="background-image: url(hpduck.png); background-size: 100% 100%; height: 75px; width: 75px;"></div>
+		</div>
+		<div class="bg-dark border border-warning rounded col-4" style="width: 230px; position: absolute; margin-left: 1200px;">
+			<p class="display-4 text-white ml-2">SCORE:<span class="score display-4">0</span></p>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		let bb = document.querySelector(".bodybg");
+		let vremya = 5;
+		let vremya_chet = document.querySelector(".vremya");
+		let score = 0;
+		let score_duck = document.querySelector(".score");
+		let count = 0;
+		let duck = document.querySelector(".duck");
+		let duck1 = document.querySelector(".duck1");
+		let duck2 = document.querySelector(".duck2");
+		let hp = document.querySelectorAll(".hp");
+
+		/*
+		//DUCK1
+			let duck1 = document.createElement("div");
+			duck1.style.backgroundImage = url("duck.png");
+			duck1.style.width = "155px";
+			duck1.style.height = "140px";
+			duck1.style.position = "absolute";
+			duck1.style.transition = "1s";
+			duck1.style.display = "none";
+
+
+		//DUCK2
+			let duck2 = document.createElement("div");
+			duck2.style.backgroundImage = "url(duck.png)";
+			duck2.style.width = "155px";
+			duck2.style.height = "140px";
+			duck2.style.position = "absolute";
+			duck2.style.transition = "1s";
+			duck2.style.display = "none";
+
+		*/
+
+		// DUCK 1
+		let timer = function(){
+			vremya = vremya - 1;
+			vremya_chet.innerHTML = vremya;
+		}
+		let timerInt = setInterval(timer, 1000);
+
+		let interv = function(){
+			//	
+				let Random = Math.random()*1300 + "px";
+				let Random1 = Math.random()*600 + "px";
+				duck.style.marginLeft = Random;
+				duck.style.marginTop = Random1;
+
+				let an = 0;
+
+				let Animation = function(){
+					if (an == 0){
+						duck.style.backgroundImage = "url(duck.png)";
+						an = 1;
+					}
+					else{
+						duck.style.backgroundImage = "url(duck1.png)";
+						duck.style.transition = "0.5s";
+						an = an - 1;
+					}
+				}
+				setInterval(Animation, 500);
+			}		
+			let loh = setInterval(interv, 1000);
+			//
+
+				duck.onclick = function(){
+					duck.style.transition = "1s";
+					duck.style.marginTop = "1000px";
+					let loh1 = function(){
+						duck.style.display = "none";
+					}
+					setTimeout(loh1, 1100);
+					clearInterval(loh);
+					count = count + 1;
+					score = score + 100;
+					score_duck.innerHTML = score;
+					if (count >= 1){
+						hp[0].style.backgroundImage = "url(lowhpduck.png)";
+					}
+				}
+				
+
+				/* DUCK 2 */
+
+				let interval = function(){
+			//
+				let Randomazer = Math.random()*1300 + "px";
+				let Randomazer1 = Math.random()*600 + "px";
+				duck1.style.marginLeft = Randomazer;
+				duck1.style.marginTop = Randomazer1;
+
+				let anm = 0;
+
+				let Animation_duck = function(){
+					if (anm == 0){
+						duck1.style.backgroundImage = "url(duck.png)";
+						anm = 1;
+					}
+					else{
+						duck1.style.backgroundImage = "url(duck1.png)";
+						duck1.style.transition = "0.5s";
+						anm = anm - 1;
+					}
+				}
+				setInterval(Animation_duck, 500);
+			}		
+			let loh1 = setInterval(interval, 1000);
+			//
+
+				duck1.onclick = function(){
+					duck1.style.transition = "1s";
+					duck1.style.marginTop = "1000px";
+					let loh2 = function(){
+						duck1.style.display = "none";
+					}
+					setTimeout(loh2, 1100);
+					clearInterval(loh1);
+					count = count + 1;
+					score = score + 100;
+					score_duck.innerHTML = score;	
+					if (count >= 1){
+						hp[1].style.backgroundImage = "url(lowhpduck.png)";
+					}
+				}
+
+				/* DUCK 3 */
+
+				let intervaler = function(){
+			//
+				let Randomazer12 = Math.random()*1300 + "px";
+				let Randomazer2 = Math.random()*600 + "px";
+				duck2.style.marginLeft = Randomazer12;
+				duck2.style.marginTop = Randomazer2;
+
+				let anmt = 0;
+
+				let Animation_duck2 = function(){
+					if (anmt == 0){
+						duck2.style.backgroundImage = "url(duck.png)";
+						anmt = 1;
+					}
+					else{
+						duck2.style.backgroundImage = "url(duck1.png)";
+						duck2.style.transition = "0.5s";
+						anmt = anmt - 1;
+					}
+				}
+				setInterval(Animation_duck2, 500);
+			}		
+			let loh2 = setInterval(intervaler, 1000);
+			//
+
+				duck2.onclick = function(){
+					duck2.style.transition = "1s";
+					duck2.style.marginTop = "1000px";
+					let loh3 = function(){
+						duck2.style.display = "none";
+					}
+					setTimeout(loh3, 1100);
+					clearInterval(loh2);
+					count = count + 1;
+					score = score + 100;
+					score_duck.innerHTML = score;
+					if (count >= 1){
+						hp[2].style.backgroundImage = "url(lowhpduck.png)";
+					}
+				}
+
+
+				let lose = function(){
+					if (score < 300){
+						alert("FLY AWAY");
+						bb.style.backgroundColor = "white";
+						clearInterval(timerInt);
+					}
+					else{
+						alert("YOU WIN");
+					}
+				}
+				setTimeout(lose, 5000);
+
+	</script>
+</body>
+</html>
